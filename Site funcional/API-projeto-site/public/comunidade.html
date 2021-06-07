@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/comunidade.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Comunidade</title>
+</head>
+<body>
+
+    <div class="container">
+        <header class="cabecalho">
+                <img src="./Img/logo-2.png" alt="Logo">
+                <p>Bem vindo, xxxxx</p>
+                <h4>Menu</h4>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="./feed.html"><i class="fas fa-home"></i>Feed</a></li>
+                        <li><a href="./comunidade.html"><i class="fas fa-users"></i>Comunidades</a></li>
+                        <li><a href="./rankings.html"><i class="fas fa-trophy"></i>Rankings</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href=""><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+                    </ul>
+                </nav>
+                <a href="./suporte.html">Fale conosco</a>
+        </header>
+
+        <section class="comunidades">
+            <div class="card">
+                <div class="box">
+                    <div class="content">
+                        <h3>Filmes</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <a href="./filmes.html">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <div class="content">
+                        <h3>Séries</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <a href="./series.html">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <div class="content">
+                        <h3>Doramas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <a href="./doramas.html">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="box">
+                    <div class="content">
+                        <h3>Animes</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <a href="./animes.html">Read more</a>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+    </div>
+
+    <!--
+    <footer>
+        <div class="rodape">
+            <p>© 2021 OLSI. Todos os direitos reservados.</p>
+            <img src="./Img/Logo.png" alt="Logo">
+        </div>
+    </footer>
+    -->
+</body>
+</html>
+
+<script>
+    // só mexer se quiser alterar o tempo de atualização
+    // ou se souber o que está fazendo!
+    function atualizacaoPeriodica() {
+      obterDados();
+      setTimeout(atualizacaoPeriodica, 10000);
+    }
+  
+    function obterDados() {
+      fetch(`/entretenimentos/listar`)
+        .then((resposta) => {
+          if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+  
+  
+              // aqui, após registro. use os nomes
+              // dos atributos que vem no JSON
+              var dados = resposta;
+  
+              atualizarTela(dados);
+            });
+          } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+          }
+        })
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados: ${error.message}`
+          );
+        });
+    }
+  
+    // só altere aqui se souber o que está fazendo!
+    function atualizarTela(dados) {
+      console.log("iniciando atualização da tela...");
+  
+      qtdEmpresas.innerHTML = `${dados.quantidade_empresa}`;
+      qtdVendidas.innerHTML = `${dados.quantidade_vendida}`;
+      qtdUsuarios.innerHTML = `${dados.quantidade_usuario}`;
+    }
+  </script>
+  

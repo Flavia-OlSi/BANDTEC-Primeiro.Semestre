@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(253, 247, 255);
+   /* background-image: url(/Img/fundo.jpg);*/
+    background-size: cover;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: aqua
+}
+
+.cabecalho{
+    width: 15vw;
+    height: 100%;
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: aqua;
+}
+
+.cabecalho img{
+    width: 70%;
+
+}
+
+.cabecalho h4, .cabecalho p{
+    width: 100%;
+    height: 40px;
+    padding-left: 10%;
+    background-color: blueviolet;
+}
+
+.menu{
+    width: 100%;
+    height: 75%;
+    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: azure;
+}
+
+.menu li{
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feed{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: chartreuse;
+}
+
+.criar-post{
+    width: 90%;
+    height: 25%;
+    background-color: darkgreen;
+}
+
+.listar-post{
+    width: 90%;
+    height: 70%;
+    overflow: auto;
+    background-color: darkgrey;
+}
+
+
+.ranking{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: coral;
+}
+
+.ranking-geral{
+    width: 90%;
+    height: 300px;
+    background-color: cornflowerblue;
+}
+
+.ranking-geral header{
+    width: 100%;
+    height: 50px;
+    background-color: crimson;
+}
+
+.ranking-geral li{
+    width: 100%;
+    height: 50px;
+    background-color: darkgray;
+}

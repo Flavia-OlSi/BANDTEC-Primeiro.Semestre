@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Login</title>
+</head>
+<body>
+
+    <section class="container">
+
+            <div class="sobre">
+ 
+                <div class="slogan">       
+                    <img src="./Img/1.png" class="rede-social" alt="">
+                    <p>A rede social para compartihar suas opniões <br> sobre seus programas de entretenimento.</p>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <form id="form_login" method="post" onsubmit="return entrar()">
+                    <header>
+                        <h4>LOGIN</h4>
+                    </header>
+                    <div class="input-login">
+                        <fieldset>
+                            <label for="login">Email</label>
+                            <input type="text" name="login" id="login">
+                        </fieldset>
+                        <fieldset>
+                            <label for="senha">Senha</label>
+                            <input type="password" name="senha" id="senha">
+                        </fieldset>
+                        <div class="esqueci-senha">
+                            <p>ESQUECI MINHA SENHA</p>
+                        </div>
+                        <button type="submit">ENTRAR</button>
+                    </div>
+                </form> 
+                <div class="cadastro">
+                    <p>Não tem uma conta ainda?</p>
+                    <button id="btn_entrar" class="btn-green"><a href="./cadastro.html">CADASTRE-SE</a></button>
+                </div> 
+            </div>
+            
+    </section>
+    <footer>
+        <div class="rodape">
+            <p>© 2021 OLSI. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+
+    function entrar() {
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.login;
+                    sessionStorage.nome_usuario_meuapp = json.nome;
+
+                    window.location.href = 'feed.html';
+                });
+            } else {
+                console.log('Erro de login!');
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    alert("Usuário incorreto.");
+                });
+            }
+        });
+
+        return false;
+    }
+
+</script>

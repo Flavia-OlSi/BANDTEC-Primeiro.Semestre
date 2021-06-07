@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+
+    <section class="container">
+            <div class="formulario">
+                <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                    <header>
+                        <h4>CADASTRO</h4>
+                    </header>
+                    <div class="input-cadastro">
+                        <fieldset>
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome">
+                        </fieldset>
+                        <fieldset>
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input type="date" name="dataNascimento" id="dataNascimento">
+                        </fieldset>
+                        <fieldset>
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username">
+                        </fieldset>
+                        <fieldset>
+                            <label for="login">Email</label>
+                            <input type="text" name="login" id="login">
+                        </fieldset>
+                        <fieldset>
+                            <label for="senha">Senha</label>
+                            <input type="password" name="senha" id="senha">
+                        </fieldset>
+                        <fieldset>
+                            <label for="ConfSenha">Confimação da senha</label>
+                            <input type="password" name="ConfSenha" id="ConfSenha">
+                        </fieldset>
+
+                        <input type="submit" id="btn_entrar" value="Cadastrar" class="btn-green">
+                    </div>
+                </form> 
+                <div class="cadastro">
+                    <p>Já é cadastrado?</p>
+                    <button><a href="login.html">ENTRAR</a></button>
+                </div> 
+            </div>
+            
+    </section>
+    <footer>
+        <div class="rodape">
+            <p>© 2021 OLSI. Todos os direitos reservados.</p>
+            <img src="./Img/Logo.png" alt="Logo">
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+
+    function cadastrar() {
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='index.html';
+
+            } else {
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+            }
+        });
+
+        return false;
+    }
+    
+</script>
