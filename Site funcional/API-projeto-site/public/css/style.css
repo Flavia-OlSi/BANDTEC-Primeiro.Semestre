@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
-    color: black; 
+
 }
 
 body{
@@ -31,14 +31,20 @@ body{
 }
 
 .cabecalho{
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
+    inset -5px -5px 5px rgba(156, 179, 255, 0.5),
+    -5px -5px 5px rgba(255, 255, 255, 0.05);
     width: 15%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    box-shadow: inset -5px -5px 5px 5px rgb(152, 140, 233);
-    background-color: rgb(177, 166, 252);
+    background-color: #cae8fa;
+}
+
+.cabecalho a, .cabecalho i, .cabecalho p{
+    color: rgb(15, 2, 26); 
 }
 
 .cabecalho img{
@@ -83,7 +89,14 @@ body{
 }
 
 .menu li:hover{
-    border-left: 2px solid purple;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
+    inset -5px -5px 5px rgba(255, 255, 255, 0.5),
+    -5px -5px 5px rgba(255, 255, 255, 0.05),
+    -5px -5px 5px rgba(255, 255, 255, 0.5);
+}
+
+.menu li:hover i, .menu li:hover a{
+    color: #F8E29C;
 }
 
 .menu a{
@@ -92,4 +105,11 @@ body{
 
 .menu i{
     padding-right: 5%;
+}
+
+.span-suporte a{
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bolder;
+    color: gray;
 }
