@@ -1,5 +1,7 @@
 let login_usuario;
 let nome_usuario;
+let id_usuario;
+let username_usuario;
 
 function redirecionar_login() {
     window.location.href = 'index.html';
@@ -8,11 +10,14 @@ function redirecionar_login() {
 function verificar_autenticacao() {
     login_usuario = sessionStorage.login_usuario_meuapp;
     nome_usuario = sessionStorage.nome_usuario_meuapp;
+    id_usuario = sessionStorage.id_usuario_meuapp;
+    username_usuario = sessionStorage.username_usuario_meuapp;
+    console.log(id_usuario,nome_usuario);
     
     if (login_usuario == undefined)  {
         redirecionar_login();
     } else {
-        b_usuario.innerHTML = nome_usuario;
+        troca_nome.innerHTML = username_usuario;
         validar_sessao();
     }
     

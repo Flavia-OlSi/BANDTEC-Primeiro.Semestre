@@ -57,22 +57,25 @@ router.post('/cadastrar', function(req, res, next) {
   	});
 });
 
-/* Cadastrar chamado */
-router.post('/cadastrar_chamado', function(req, res, next) {
-	console.log('Criando um usuário');
-	
-	Usuario.create({
-		titulo : req.body.titulo,
-		descricao : req.body.descricao,
-		
-	}).then(resultado => {
-		console.log(`Registro criado: ${resultado}`)
+/* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
+router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
+    console.log("Iniciando Publicação...")
+    
+	let idUsuario = req.params.idUsuario;
+
+    Chamado.create({
+        titulo: req.body.titulo,
+		descricao: req.body.descricao,
+        fkUsuario: idUsuario
+    }).then(resultado => {
+        console.log("Post realizado com sucesso!!");
         res.send(resultado);
     }).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
-  	});
-});
+        console.log('DEU UM ERRINHO')
+        console.error(erro);
+        res.status(500).send(erro.message);
+    })
+})
 
 
 /* Verificação de usuário */

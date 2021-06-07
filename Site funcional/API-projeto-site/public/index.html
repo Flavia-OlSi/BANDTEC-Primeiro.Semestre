@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/login.css">
+    <script type="text/javascript" src="funcoes.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -68,6 +69,8 @@
 
                     sessionStorage.login_usuario_meuapp = json.login;
                     sessionStorage.nome_usuario_meuapp = json.nome;
+                    sessionStorage.id_usuario_meuapp = json.idUsuario;
+                    sessionStorage.username_usuario_meuapp = json.username;
 
                     window.location.href = 'feed.html';
                 });

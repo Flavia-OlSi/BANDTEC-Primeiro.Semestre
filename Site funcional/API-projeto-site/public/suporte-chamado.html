@@ -79,28 +79,21 @@
 
 <script>
 
-    function cadastrarChamado() {
-        console.log("entrei!");
-
-        var formulario = new URLSearchParams(new FormData(form_cadastro_chamado));
-        var idUsuario = sessionStorage.id_usuario_meuapp;
-        console.log(`${idUsuario}`);
-
-        fetch(`/usuarios/cadastrar_chamado/${idUsuario}`, {
-        method: "POST",
-        body: formulario,
-        }).then((resposta) => {
-        if (resposta.ok) {
-            alert('Deu certo');
-        } else {
-            console.log("Erro ao publicar!");
-            resposta.text().then((texto) => {
-            console.error(texto);
-            alert('Deu errado');
-            });
-        }
+function obterPublicacoesPorUsuario(idUsuario) {
+        fetch(`/publicacoes/${idUsuario}`)
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // alert(JSON.stringify(resposta))
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção das publicações do usuário: ${error.message}`);
         });
-
-        return false;
     }
+    
 </script>
