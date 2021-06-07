@@ -77,6 +77,28 @@ router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
     })
 })
 
+/* RECUPERA OS CHAMADOS DO USUÁRIO LOGADO */
+/* ROTA QUE RECUPERA AS PUBLICAÇÕES DE UM USUÁRIO PELO ID */
+router.get('/listar_chamado/:idUsuario', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+	
+	var idUsuario = req.params.idUsuario;
+
+    let instrucaoSql = ` SELECT titulo, descricao, dataChamado, situacao FROM Chamado WHERE fkUsuario = ${idUsuario}`;
+
+	sequelize.query(instrucaoSql, {
+		model: Chamado,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
 
 /* Verificação de usuário */
 router.get('/sessao/:login', function(req, res, next) {

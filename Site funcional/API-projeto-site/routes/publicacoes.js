@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Publicacao = require('../models').Publicacao;
+var Chamado = require('../models').Chamado;
+
 
 /* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
 router.post('/publicar/:idUsuario', function(req, res, next) {
