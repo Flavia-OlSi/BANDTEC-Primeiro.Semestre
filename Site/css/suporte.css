@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    color: black; 
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBF2FC;
+   /* background-image: url(/Img/fundo.jpg);*/
+    background-size: cover;
+    font-family: 'Hind Siliguri', sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /*background-color: aqua*/
+}
+
+.cabecalho{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: inset -5px -5px 5px 5px rgb(152, 140, 233);
+    background-color: rgb(177, 166, 252);
+}
+
+.cabecalho img{
+    width: 70%;
+}
+
+.cabecalho p, .cabecalho h4{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    padding-top: 5%;
+    /*ackground-color: beige;*/
+}
+.cabecalho p{
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    padding-top: 10%;
+    border-top: 1px solid black;
+    /*background-color: beige;*/
+}
+
+
+.menu{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*background-color: azure;*/
+}
+
+.menu li{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style-type: none;
+    padding-left: 10%;
+    /*background-color: aqua;*/
+}
+
+.menu li:hover{
+    border-left: 2px solid purple;
+}
+
+.menu a{
+    text-decoration: none;
+}
+
+.menu i{
+    padding-right: 5%;
+}
+
+.suporte{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    /*background-color: chartreuse;*/
+}
+
+.chamado{
+    width: 500px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: royalblue;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(225, 225, 225, 0.5);
+    border-right: 1px solid rgba(225, 225, 225, 0.2);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.2);
+}
+
+.grid{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chamado-input{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+fieldset{
+    width: 100%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.chamado-input input{
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.chamado-input textarea{
+    border-radius: 10px;
+}
+
+button{
+    padding: 8px 20px;
+    border-radius: 20px;
+    background-color: slateblue;
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    border: none;
+}

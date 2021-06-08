@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: rgb(252, 235, 255);*/
+   /* background-image: url(/Img/fundo.jpg);*/
+    background-size: cover;
+    font-family: 'Hind Siliguri', sans-serif;
+    background-image: url(../Img/fundo-8.jpg);
+}
+
+.container{
+    width: 80%;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.sobre{
+    width: 50%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo{
+    width: 150px;
+}
+
+.slogan{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    margin-top: 2%;
+    font-family: 'Mali', cursive;
+    text-align: center;
+}
+
+.rede-social{
+    width: 60%;
+}
+
+.formulario{
+    width: 35%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(225, 225, 225, 0.5);
+    border-right: 1px solid rgba(225, 225, 225, 0.2);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.2);
+}
+
+form{
+    width: 90%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: aquamarine;*/
+}
+
+.formulario header{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: azure;*/
+}
+
+.formulario h4{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.input-login{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /*background-color: blueviolet;*/
+}
+
+fieldset{
+    width: 100%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+   /*background-color: brown;*/
+}
+
+.input-login input{
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+    outline: none;
+    border-color: #FADEE1;
+}
+
+.esqueci-senha{
+    width: 100%;
+    margin-top: -6%;
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    /*background-color: brown;*/
+}
+
+button{
+    border-radius: 10px;
+    background-color: #1a6ac5;
+}
+
+.input-login button{
+    width: 30%;
+}
+
+.cadastro{
+    width: 90%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid gray;
+    /*background-color: brown;*/
+}
+
+.cadastro button{
+    width: 37%;
+}
+
+
+
+.formulario a{
+    text-decoration: none;
+}
+
+.formulario button{
+    
+    height: 35px;
+}
+
+footer{
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}

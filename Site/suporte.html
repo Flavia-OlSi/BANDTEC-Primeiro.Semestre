@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/suporte.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Comunidade</title>
+</head>
+<body>
+
+    <div class="container">
+        <header class="cabecalho">
+                <img src="./Img/logo-2.png" alt="Logo">
+                <p>Bem vindo, xxxxx</p>
+                <h4>Menu</h4>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="./feed.html"><i class="fas fa-home"></i>Feed</a></li>
+                        <li><a href="./comunidade.html"><i class="fas fa-users"></i>Comunidades</a></li>
+                        <li><a href="./rankings.html"><i class="fas fa-trophy"></i>Rankings</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href=""><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+                    </ul>
+                </nav>
+                <a href="./suporte.html">Fale conosco</a>
+        </header>
+
+        <section class="suporte">
+            <form action="cadastrarChamado" class="chamado">
+                <div class="grid">
+                    <h3>Ocorrência</h3>
+                    <div class="chamado-input">
+                        <fieldset>
+                            <label for="titulo">Título</label>
+                            <input type="text" id="titulo" name="titulo">   
+                        </fieldset>
+                        <fieldset>
+                            <label for="ocorrencia">Descrição</label>
+                            <textarea name="ocorrencia" id="ocorrencia" cols="30" rows="10"></textarea>  
+                        </fieldset>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+
+    <!--
+    <footer>
+        <div class="rodape">
+            <p>© 2021 OLSI. Todos os direitos reservados.</p>
+            <img src="./Img/Logo.png" alt="Logo">
+        </div>
+    </footer>
+    -->
+</body>
+</html>
