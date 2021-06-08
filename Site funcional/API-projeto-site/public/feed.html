@@ -10,7 +10,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
 </head>
-<body>
+<body onload="obterPost(), obterRanking()">
 
     <div class="container">
         <header class="cabecalho">
@@ -28,7 +28,7 @@
                 </ul>
             </nav>
             <span class="span-suporte"><a href="./suporte.html">SUPORTE</a></span>
-    </header>
+        </header>
 
         <section class="feed">
             <form class="criar-post" id="form_publicar_post" method="post" onsubmit="return publicarPost()">
@@ -40,34 +40,27 @@
                 </select>
                 <select name="fkTitulo" id="">
                     <option value="1">Anime 1</option>
-                    <option value="2"></option>
-                    <option value="3"></option>
+                    <option value="2">Anime 2</option>
+                    <option value="3">Anime 3</option>
                 </select>
                 <h3>Titulo</h3>
                 <input name="titulo" type="text">
                 <h3>Descricao</h3>
                 <input name="descricao" type="text">
+                <button type="submit">Enviar</button>
             </form>
-            <div class="listar-post">
+            <div class="listar-post" id="listar_post">
 
             </div>
+
         </section>
 
-        <section class="ranking">
-            <div class="ranking-geral">
-                <header>
-                    Top favoritos
-                </header>
-                <ol>
-                    <li>Primeiro</li>
-                    <li>Segundo</li>
-                    <li>Terceiro</li>
-                    <li>Quarto</li>
-                    <li>Quinta</li>
-                </ol>
-            </div>
+
+        <div class="ranking" id="listar_ranking">
+           
+
             <p>© 2021 OLSI. Todos os direitos reservados.</p>
-        </section>
+        </div>
     </div>
 
     </div>
@@ -77,6 +70,103 @@
 
 
 <script>
+
+    function publicarPost(){
+        console.log("entrei!");
+
+        var formulario = new URLSearchParams(new FormData(form_publicar_post));
+        var idUsuario = sessionStorage.id_usuario_meuapp;
+        console.log(`${idUsuario}`);
+
+        fetch(`/usuarios/cadastrar_post/${idUsuario}`, {
+        method: "POST",
+        body: formulario,
+        }).then((resposta) => {
+        if (resposta.ok) {
+            alert('Deu certo');
+            obterPost();
+        } else {
+            console.log("Erro ao publicar!");
+            resposta.text().then((texto) => {
+            console.error(texto);
+            alert('Deu errado');
+            });
+        }
+        });
+
+        return false;
+    }
+
+    function obterRanking() {
+       
+                
+        fetch(`/usuarios/ranking`)
+        .then(resposta => {
+
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    // alert(JSON.stringify(resposta))
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    listar_ranking.innerHTML = "";
+                    for(i = 0; i < resposta.length; i++){
+                        listar_ranking.innerHTML += `<p>${resposta[i].nome}</p>`;
+                        console.log(`${resposta[i].nome}`);      
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
+            });
+
+    
+    }
+
+
+    function obterPost() {
+       
+                
+        fetch(`/usuarios/post`)
+        .then(resposta => {
+
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    // alert(JSON.stringify(resposta))
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    listar_post.innerHTML = "";
+                    for(i = 0; i < resposta.length; i++){
+                        listar_post.innerHTML += `<div class="card">
+                                                    <div class="box">
+                                                        <div class="content">
+                                                            <div class="sobre">
+                                                                <h5>Username: <span id="genero">${resposta[i].username}</span></h5>
+                                                                <div class="resumo">
+                                                                    <h5>Data:</h5>
+                                                                    <p id="sinopse">${resposta[i].dataPost}</p>
+                                                                </div>
+                                                                <h5>Título: <span id="duracao">${resposta[i].titulo}</span></h5>
+                                                                <h5>Situação: <span id="lancamento">${resposta[i].descricao}</span></h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>`
+                                            
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
+            });
+
+    
+    }
+
 
 
 </script>

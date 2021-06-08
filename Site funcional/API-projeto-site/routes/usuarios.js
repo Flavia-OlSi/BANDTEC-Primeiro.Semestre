@@ -5,7 +5,7 @@ var Usuario = require('../models').Usuario;
 var Chamado = require('../models').Chamado;
 var Titulo = require('../models').Titulo;
 var Avaliacao = require('../models').Avaliacao;
-
+var Post = require('../models').Post;
 
 
 let sessoes = [];
@@ -79,6 +79,64 @@ router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
         res.status(500).send(erro.message);
     })
 })
+
+/* ROTA QUE Cadastrar um chamado */
+router.post('/cadastrar_post/:idUsuario', function(req, res, next) {
+    console.log("Iniciando Publicação...")
+    
+	let idUsuario = req.params.idUsuario;
+
+    Post.create({
+		fkUsuario: idUsuario,
+        titulo: req.body.titulo,
+		descricao: req.body.descricao,
+		fkTitulo: req.body.fkTitulo
+    }).then(resultado => {
+        console.log("Post realizado com sucesso!!");
+        res.send(resultado);
+    }).catch(erro => {
+        console.log('DEU UM ERRINHO')
+        console.error(erro);
+        res.status(500).send(erro.message);
+    })
+})
+
+router.get('/post/', function(req, res, next) {
+    console.log('Recuperando livros');
+
+    let instrucaoSql =  `select username, fkUsuario, dataPost, titulo, descricao, fkTitulo FROM post
+		inner join usuario
+		on fkUsuario = idUsuario`;
+
+    console.log(instrucaoSql, );
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+    .then(resultado => {
+        res.json(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
+router.get('/ranking/', function(req, res, next) {
+    console.log('Recuperando livros');
+
+    let instrucaoSql =  `select nome, fkTitulo, TRUNCATE(AVG(nota),2) AS 'notas' FROM avaliacao 
+	inner join titulo
+	on fkTitulo = idTitulo
+	group by fkTitulo order by notas DESC;`;
+
+    console.log(instrucaoSql, );
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+    .then(resultado => {
+        res.json(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
 
 /* ROTA QUE Cadastrar uma nota */
 router.post('/cadastrar_avaliacao/:nota/:fkTitulo/:idUsuario', function(req, res, next) {

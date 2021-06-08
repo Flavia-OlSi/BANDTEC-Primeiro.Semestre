@@ -3,7 +3,6 @@ var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Publicacao = require('../models').Publicacao;
 var Chamado = require('../models').Chamado;
-var Post = require('../models').Post;
 
 
 /* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */

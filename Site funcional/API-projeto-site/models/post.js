@@ -16,14 +16,12 @@ module.exports = (sequelize, DataTypes) => {
 		fkUsuario: {
 			field: 'fkUsuario',
 			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
+			primaryKey: true
 		},	
         dataPost: {
 			field: 'dataPost',
 			type: DataTypes.DATE,
-			allowNull: true,
-            primaryKey: true
+            allowNull: true
 		},
         titulo: {
             field: 'titulo',
@@ -38,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         fkTitulo: {
             field: 'fkTitulo',
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
 	}, 
 	{
