@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
 body{
     width: 100%;
     height: 100vh;
@@ -5,11 +17,10 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /*background-color: rgb(252, 235, 255);*/
+    background-color: #e9f1fa;
    /* background-image: url(/Img/fundo.jpg);*/
     background-size: cover;
     font-family: 'Hind Siliguri', sans-serif;
-    background-image: url(../Img/fundo-8.jpg);
 }
 
 .container{
@@ -43,7 +54,7 @@ body{
 }
 
 .rede-social{
-    width: 60%;
+    width: 100%;
 }
 
 .formulario{
@@ -53,13 +64,12 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: #F8E29C;
     border-radius: 10px;
     backdrop-filter: blur(5px);
-    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
-    border: 1px solid rgba(225, 225, 225, 0.5);
-    border-right: 1px solid rgba(225, 225, 225, 0.2);
-    border-bottom: 1px solid rgba(225, 225, 225, 0.2);
+    box-shadow: 0 25px 45px rgba(207, 200, 131, 0.2);
+    border: 1px solid #F8E29C;
+
 }
 
 form{
@@ -85,6 +95,7 @@ form{
     width: 100%;
     font-size: 20px;
     text-align: center;
+    font-weight: bold;
 }
 
 .input-login{
@@ -110,7 +121,8 @@ fieldset{
     height: 35px;
     border-radius: 10px;
     outline: none;
-    border-color: #FADEE1;
+    border: none;
+
 }
 
 .esqueci-senha{
@@ -124,7 +136,10 @@ fieldset{
 
 button{
     border-radius: 10px;
-    background-color: #1a6ac5;
+    background-color: #32e2bb;
+    border: none;
+    color: black;
+    font-weight: bold;
 }
 
 .input-login button{
@@ -142,14 +157,15 @@ button{
     /*background-color: brown;*/
 }
 
+
 .cadastro button{
     width: 37%;
 }
 
-
-
 .formulario a{
     text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
 .formulario button{

@@ -3,6 +3,7 @@ var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
 var Chamado = require('../models').Chamado;
+var Titulo = require('../models').Titulo;
 
 
 let sessoes = [];
@@ -77,6 +78,7 @@ router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
     })
 })
 
+
 /* RECUPERA OS CHAMADOS DO USUÁRIO LOGADO */
 /* ROTA QUE RECUPERA AS PUBLICAÇÕES DE UM USUÁRIO PELO ID */
 router.get('/listar_chamado/:idUsuario', function(req, res, next) {
@@ -88,6 +90,82 @@ router.get('/listar_chamado/:idUsuario', function(req, res, next) {
 
 	sequelize.query(instrucaoSql, {
 		model: Chamado,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+/* ROTA QUE RECUPERA OS ANIMES */
+router.get('/listar_animes', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    let instrucaoSql = ` SELECT * FROM titulo WHERE fkTipoDeEntretenimento = (SELECT idTipoDeEntretenimento FROM TipoDeEntretenimento WHERE nome = 'Animes');`;
+
+	sequelize.query(instrucaoSql, {
+		model: Titulo,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+/* ROTA QUE RECUPERA OS doramas */
+router.get('/listar_doramas', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    let instrucaoSql = ` SELECT * FROM titulo WHERE fkTipoDeEntretenimento = (SELECT idTipoDeEntretenimento FROM TipoDeEntretenimento WHERE nome = 'Doramas');`;
+
+	sequelize.query(instrucaoSql, {
+		model: Titulo,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+/* ROTA QUE RECUPERA OS filmes */
+router.get('/listar_filmes', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    let instrucaoSql = ` SELECT * FROM titulo WHERE fkTipoDeEntretenimento = (SELECT idTipoDeEntretenimento FROM TipoDeEntretenimento WHERE nome = 'Filmes');`;
+
+	sequelize.query(instrucaoSql, {
+		model: Titulo,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+/* ROTA QUE RECUPERA OS series */
+router.get('/listar_series', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    let instrucaoSql = ` SELECT * FROM titulo WHERE fkTipoDeEntretenimento = (SELECT idTipoDeEntretenimento FROM TipoDeEntretenimento WHERE nome = 'Séries');`;
+
+	sequelize.query(instrucaoSql, {
+		model: Titulo,
 		mapToModel: true 
 	})
 	.then(resultado => {

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
 </head>
-<body>
+<body onload="atualizacaoPeriodica()">
 
     <div class="container">
         <header class="cabecalho">
@@ -31,55 +31,77 @@
         </header>
 
         <section class="comunidades">
-            <div class="card">
-                <div class="box">
-                    <div class="content">
-                        <div class="imagem">
-                            <img src="https://img.olhardigital.com.br/wp-content/uploads/2021/05/Emily-Em-Paris-2.jpg" alt="Foto da série Emily em Paris">
-                        </div>
-                        <div class="sobre">
-                            <h4>Emily em Paris</h4>
-                            <h5>Gênero: <span id="genero"></span></h5>
-                            <div class="resumo">
-                                <h5>Sinopse:</h5>
-                                <p id="sinopse">A trama é estrelada por Lily Collind, que interpreta a executiva de marketing Emily. Moradora de Chicago, ela acaba se mudando para Paris, onde tenta conviver com as diferenças entre o mode de vida americano e o frnacês.</p>
-                            </div>
-                            <h5>Status: <span id="status"></span></h5>
-                            <h5>Temporadas: <span id="temporadas"></span></h5>
-                            <h5>Ano de lançamento: <span id="lancamento"></span></h5>
-                            <div class="avaliacao">
-                                <h5>Avalie:</h5>
-                                <div class="estrelas">
-                                    <input type="radio" id="star-empty" name="fb" value="" checked/>
-                                    <label for="star-1"><i class="fa"></i></label>
-                                    <input type="radio" id="star-1" name="fb" value="1"/>
-                                    <label for="star-2"><i class="fa"></i></label>
-                                    <input type="radio" id="star-2" name="fb" value="2"/>
-                                    <label for="star-3"><i class="fa"></i></label>
-                                    <input type="radio" id="star-3" name="fb" value="3"/>
-                                    <label for="star-4"><i class="fa"></i></label>
-                                    <input type="radio" id="star-4" name="fb" value="4"/>
-                                    <label for="star-5"><i class="fa"></i></label>
-                                    <input type="radio" id="star-5" name="fb" value="5"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-        
+            
         </section>
 
     </div>
 
-    <!--
-    <footer>
-        <div class="rodape">
-            <p>© 2021 OLSI. Todos os direitos reservados.</p>
-            <img src="./Img/Logo.png" alt="Logo">
-        </div>
-    </footer>
-    -->
 </body>
 </html>
+
+<script>
+    
+    function atualizacaoPeriodica() {
+        obterPublicacoesPorUsuario();
+        setTimeout(atualizacaoPeriodica, 10000);
+      }
+    
+    
+    function obterPublicacoesPorUsuario() {
+            fetch(`usuarios/listar_series`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        // alert(JSON.stringify(resposta))
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        comunidades.innerHTML = "";
+                        for(i = 0; i < resposta.length; i++){
+                            comunidades.innerHTML += `<div class="card">
+                                    <div class="box">
+                                        <div class="content">
+                                            <div class="imagem">
+                                                <img src="${resposta[i].foto}">
+                                            </div>
+                                            <div class="sobre">
+                                                <h4>${resposta[i].nome}</h4>
+                                                <h5>Gênero: <span id="genero">${resposta[i].genero}</span></h5>
+                                                <div class="resumo">
+                                                    <h5>Sinopse:</h5>
+                                                    <p id="sinopse">${resposta[i].sinopse}</p>
+                                                </div>
+                                                <h5>Status: <span id="status">${resposta[i].situacao}</span></h5>
+                                                <h5>Temporadas: <span id="temporadas"${resposta[i].temporada}></span></h5>
+                                                <h5>Ano de lançamento: <span id="lancamento">${resposta[i].anoLancamento}</span></h5>
+                                                <div class="avaliacao">
+                                                    <h5>Avalie:</h5>
+                                                    <div class="estrelas">
+                                                        <input type="radio" id="star-empty" name="fb" value="" checked/>
+                                                        <label for="star-1"><i class="fa"></i></label>
+                                                        <input type="radio" id="star-1" name="fb" value="1"/>
+                                                        <label for="star-2"><i class="fa"></i></label>
+                                                        <input type="radio" id="star-2" name="fb" value="2"/>
+                                                        <label for="star-3"><i class="fa"></i></label>
+                                                        <input type="radio" id="star-3" name="fb" value="3"/>
+                                                        <label for="star-4"><i class="fa"></i></label>
+                                                        <input type="radio" id="star-4" name="fb" value="4"/>
+                                                        <label for="star-5"><i class="fa"></i></label>
+                                                        <input type="radio" id="star-5" name="fb" value="5"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                                                
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção das publicações do usuário: ${error.message}`);
+            });
+        }
+    
+    </script>

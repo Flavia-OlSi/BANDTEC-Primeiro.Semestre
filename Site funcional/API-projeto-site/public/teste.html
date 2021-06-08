@@ -74,6 +74,7 @@ function obterPublicacoesPorUsuario(idUsuario) {
                 resposta.json().then(function (resposta) {
                     // alert(JSON.stringify(resposta))
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    ocorrencias.innerHTML = "";
                     for(i = 0; i < resposta.length; i++){
                         ocorrencias.innerHTML += `<div class="card">
                                                     <div class="box">
