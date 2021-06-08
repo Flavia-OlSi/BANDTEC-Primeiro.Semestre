@@ -3,6 +3,7 @@ var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Publicacao = require('../models').Publicacao;
 var Chamado = require('../models').Chamado;
+var Post = require('../models').Post;
 
 
 /* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
@@ -23,6 +24,8 @@ router.post('/publicar/:idUsuario', function(req, res, next) {
         res.status(500).send(erro.message);
     })
 })
+
+
 
 /* ROTA QUE RECUPERA TODAS AS PUBLICAÇÕES */
 router.get('/', function(req, res, next) {

@@ -4,6 +4,8 @@ var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
 var Chamado = require('../models').Chamado;
 var Titulo = require('../models').Titulo;
+var Avaliacao = require('../models').Avaliacao;
+
 
 
 let sessoes = [];
@@ -58,7 +60,7 @@ router.post('/cadastrar', function(req, res, next) {
   	});
 });
 
-/* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
+/* ROTA QUE Cadastrar um chamado */
 router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
     console.log("Iniciando Publicação...")
     
@@ -78,6 +80,27 @@ router.post('/cadastrar_chamado/:idUsuario', function(req, res, next) {
     })
 })
 
+/* ROTA QUE Cadastrar uma nota */
+router.post('/cadastrar_avaliacao/:nota/:fkTitulo/:idUsuario', function(req, res, next) {
+    console.log("Iniciando Publicação...")
+    
+	let idUsuario = req.params.idUsuario;
+	let nota = req.params.nota;
+	let fkTitulo = req.params.fkTitulo;
+
+    Avaliacao.create({
+		fkTitulo: fkTitulo,
+		fkUsuario: idUsuario,
+		nota: nota
+    }).then(resultado => {
+        console.log("Post realizado com sucesso!!");
+        res.send(resultado);
+    }).catch(erro => {
+        console.log('DEU UM ERRINHO')
+        console.error(erro);
+        res.status(500).send(erro.message);
+    })
+})
 
 /* RECUPERA OS CHAMADOS DO USUÁRIO LOGADO */
 /* ROTA QUE RECUPERA AS PUBLICAÇÕES DE UM USUÁRIO PELO ID */

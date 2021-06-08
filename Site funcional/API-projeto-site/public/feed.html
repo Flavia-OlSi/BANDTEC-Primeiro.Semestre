@@ -31,8 +31,22 @@
     </header>
 
         <section class="feed">
-            <form class="criar-post">
-
+            <form class="criar-post" id="form_publicar_post" method="post" onsubmit="return publicarPost()">
+                <select name="fkTipoDeEntretenimento" id="">
+                    <option value="1">Dorama</option>
+                    <option value="2">Anime</option>
+                    <option value="3">Filme</option>
+                    <option value="4">Série</option>
+                </select>
+                <select name="fkTitulo" id="">
+                    <option value="1">Anime 1</option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                </select>
+                <h3>Titulo</h3>
+                <input name="titulo" type="text">
+                <h3>Descricao</h3>
+                <input name="descricao" type="text">
             </form>
             <div class="listar-post">
 
@@ -61,3 +75,8 @@
 </body>
 </html>
 
+
+<script>
+
+
+</script>
