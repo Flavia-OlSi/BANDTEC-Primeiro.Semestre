@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;    
+    background-color: #EBF2FC;
     /*background-color: chartreuse;*/
 }
 
@@ -24,8 +25,8 @@
 .box{
     width: 230px;
     height: 180px;
-    background-color: #EBF2FC;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: #f8e39c7a;
     border-radius: 15px;
 }
 
@@ -33,6 +34,7 @@
     transform: translateY(-30px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     border: 1px solid #F8E29C;
+    background-color: blueviolet;
     transition: 0.5s;
 }
 
@@ -68,7 +70,7 @@
     background-color: slateblue;
     color: white;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: bold;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 

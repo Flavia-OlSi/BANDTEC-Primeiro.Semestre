@@ -78,8 +78,13 @@
                 console.log('Erro de login!');
                 resposta.text().then(texto => {
                     console.error(texto);
-                    alert("Usuário incorreto.");
                 });
+                if(login.value == "" || senha.value == "")
+                {
+                    alert("Campo em branco.");
+                }else{
+                    alert("Usuário incorreto.");
+                }
             }
         });
 

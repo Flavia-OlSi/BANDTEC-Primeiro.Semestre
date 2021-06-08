@@ -6,12 +6,17 @@
   justify-content: space-around;
   align-items: center;
   overflow: auto;
+  background-color: #EBF2FC;
   /*background-color: chartreuse;*/
+}
+
+.comunidades::-webkit-scrollbar{ 
+  display: none; 
 }
 
 .card {
   width: 350px;
-  height: 470px;
+  height: 500px;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
     inset -5px -5px 5px rgba(255, 255, 255, 0.5),
     -5px -5px 5px rgba(255, 255, 255, 0.05),
@@ -25,17 +30,19 @@
 
 .box {
   width: 330px;
-  height: 450px;
+  height: 480px;
   background-color: #ebf2fc;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  color: gray;
   border-radius: 15px;
   filter: grayscale(60%);
 }
 
 .box:hover {
   filter: grayscale(0%);  
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(45deg, #b95ce4, #4f29cd);
+  box-shadow: 0 10px 40px #F8E29C;
+  border: 1px solid #F8E29C;
+  color: black;
   transition: 0.5s;
 }
 
@@ -75,8 +82,8 @@
 
 .sobre{
     width: 95%;
-    height: 260px;
-    /*background-color: grey;*/
+    height: 290px;
+
 }
 
 .sobre h4{
@@ -85,8 +92,7 @@
 
 .resumo{
     width: 100%;
-    height: 120px;
-    /*background-color: honeydew;*/
+    height: 150px;
 }
 
 .resumo p{

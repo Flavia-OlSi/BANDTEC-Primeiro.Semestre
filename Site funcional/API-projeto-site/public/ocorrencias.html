@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/titulos.css" />
+    <link rel="stylesheet" href="./css/feed.css" />
+    <link rel="stylesheet" href="./css/ocorrencias.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -15,7 +16,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
   </head>
-  <body onload="atualizacaoPeriodica()">
+  <body onload="atualizacaoPeriodica(), verificar_autenticacao()">
     <div class="container">
       <header class="cabecalho">
         <img src="./Img/logo-2.png" alt="Logo" />
@@ -31,11 +32,6 @@
                 ><i class="fas fa-users"></i>Comunidades</a
               >
             </li>
-            <li>
-              <a href="./rankings.html"
-                ><i class="fas fa-trophy"></i>Rankings</a
-              >
-            </li>
           </ul>
           <ul>
             <li>
@@ -45,13 +41,14 @@
             </li>
           </ul>
         </nav>
-        <span class="span-suporte"><a href="./suporte.html">SUPORTE</a></span>
+        <span class="span-suporte"><a href="./suporte.html">CADASTRO</a> - <a href="./ocorrencias.html">LISTA</a></span>
       </header>
 
-      <section class="comunidades" id="ocorrencias">
+      <section class="suporte" >
+        <div class="div_ocorrencias" id="ocorrencias">
 
-     
-
+       
+        </div>
       </section>
     </div>
   </body>
@@ -76,22 +73,25 @@ function obterPublicacoesPorUsuario(idUsuario) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     ocorrencias.innerHTML = "";
                     for(i = 0; i < resposta.length; i++){
-                        ocorrencias.innerHTML += `<div class="card">
-                                                    <div class="box">
-                                                        <div class="content">
-                                                            <div class="sobre">
-                                                                <h5>Título: <span id="genero">${resposta[i].titulo}</span></h5>
-                                                                <div class="resumo">
-                                                                    <h5>Descrição:</h5>
-                                                                    <p id="sinopse">${resposta[i].descricao}</p>
+                        ocorrencias.innerHTML += `   <div class="post">
+                                                            <div class="po-titulo">
+                                                              <span>Ocorrência ${i+1}</span>
+                                                            </div>
+                                                            <div class="po-ti">
+                                                                <span>${resposta[i].titulo}</span>
+                                                            </div>
+                                                            <div class="po-descricao">
+                                                                <span>${resposta[i].descricao}</span>
+                                                            </div>
+                                                            <div class="po-detalhes">
+                                                                <div class="po-autor">
+                                                                    <h4>Data: </h4><span>${resposta[i].dataChamado}</span>
                                                                 </div>
-                                                                <h5>Data de abertura: <span id="duracao">${resposta[i].dataChamado}</span></h5>
-                                                                <h5>Situação: <span id="lancamento">${resposta[i].situacao}</span></h5>
+                                                                <div class="po-data">
+                                                                    <h4>Situação: </h4><span>${resposta[i].situacao}</span>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>`
+                                                        </div>`
                                             
                     }
                 });

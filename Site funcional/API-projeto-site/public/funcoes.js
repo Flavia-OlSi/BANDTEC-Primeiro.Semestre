@@ -3,6 +3,13 @@ let nome_usuario;
 let id_usuario;
 let username_usuario;
 
+let tiposDeEntretrenimento = ["Filmes", "Séries", "Doramas", "Animes"];
+let animes = ["Kaichou wa maid-sama", "Kimi ni todoke", "Sakura card captors", "Spacial A", "Inuyasha", "Angels beats"];
+let doramas = ["1% de alguma coisa", "Playfull kiss", "Vicenzo"];
+let series = ["Breaking bad", "Lost", "How I met your mother", "Friends", "Modern family", "Stranger things"];
+let filmes = ["A natureza selvagem", "De repente 30", "Orgulho e preconceito"];
+
+
 function redirecionar_login() {
     window.location.href = 'index.html';
 }
@@ -17,7 +24,7 @@ function verificar_autenticacao() {
     if (login_usuario == undefined)  {
         redirecionar_login();
     } else {
-        troca_nome.innerHTML = username_usuario;
+        troca_nome.innerHTML = nome_usuario;
         validar_sessao();
     }
     

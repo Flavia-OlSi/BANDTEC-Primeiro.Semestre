@@ -10,7 +10,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
 </head>
-<body onload="atualizacaoPeriodica()">
+<body onload="atualizacaoPeriodica(), verificar_autenticacao()">
 
     <div class="container">
         <header class="cabecalho">
@@ -21,7 +21,6 @@
                     <ul>
                         <li><a href="./feed.html"><i class="fas fa-home"></i>Feed</a></li>
                         <li><a href="./comunidade.html"><i class="fas fa-users"></i>Comunidades</a></li>
-                        <li><a href="./rankings.html"><i class="fas fa-trophy"></i>Rankings</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onclick="logoff()"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
@@ -30,7 +29,7 @@
                 <span class="span-suporte"><a href="./suporte.html">SUPORTE</a></span>
         </header>
 
-        <section class="comunidades">   
+        <section class="comunidades" id="comunidades">   
         
         </section>
 
@@ -70,23 +69,23 @@
                                                     <p id="sinopse">${resposta[i].sinopse}</p>
                                                 </div>
                                                 <h5>Status: <span id="status">${resposta[i].situacao}</span></h5>
-                                                <h5>Episodios: <span id="temporadas"${resposta[i].episodio}></span></h5>
+                                                <h5>Episodios: <span id="temporadas">${resposta[i].episodio}</span></h5>
                                                 <h5>Ano de lançamento: <span id="lancamento">${resposta[i].anoLancamento}</span></h5>
                                                 <div class="avaliacao">
                                                     <h5>Avalie:</h5>
-                                                    <div class="estrelas">
+                                                    <form class="estrelas" id="form_cadastro_avaliacao" method="post" onsubmit="return cadastrarAvaliacao()">
                                                         <input type="radio" id="star-empty" name="fb" value="" checked/>
-                                                        <label for="star-1"><i class="fa"></i></label>
-                                                        <input type="radio" id="star-1" name="fb" value="1"/>
-                                                        <label for="star-2"><i class="fa"></i></label>
-                                                        <input type="radio" id="star-2" name="fb" value="2"/>
-                                                        <label for="star-3"><i class="fa"></i></label>
-                                                        <input type="radio" id="star-3" name="fb" value="3"/>
-                                                        <label for="star-4"><i class="fa"></i></label>
-                                                        <input type="radio" id="star-4" name="fb" value="4"/>
-                                                        <label for="star-5"><i class="fa"></i></label>
-                                                        <input type="radio" id="star-5" name="fb" value="5"/>
-                                                    </div>
+                                                        <label for="a${resposta[i].idTitulo}"><i class="fa"></i></label>
+                                                        <input type="radio" id="a${resposta[i].idTitulo}" name="fb" value="1" onclick="cadastrarAvaliacao(1, ${resposta[i].idTitulo})"/>
+                                                        <label for="b${resposta[i].idTitulo}"><i class="fa"></i></label>
+                                                        <input type="radio" id="b${resposta[i].idTitulo}" name="fb" value="2" onclick="cadastrarAvaliacao(2, ${resposta[i].idTitulo})"/>
+                                                        <label for="c${resposta[i].idTitulo}"><i class="fa"></i></label>
+                                                        <input type="radio" id="c${resposta[i].idTitulo}" name="fb" value="3" onclick="cadastrarAvaliacao(3, ${resposta[i].idTitulo})"/>
+                                                        <label for="d${resposta[i].idTitulo}"><i class="fa"></i></label>
+                                                        <input type="radio" id="d${resposta[i].idTitulo}" name="fb" value="4" onclick="cadastrarAvaliacao(4, ${resposta[i].idTitulo})"/>
+                                                        <label for="e${resposta[i].idTitulo}"><i class="fa"></i></label>
+                                                        <input type="radio" id="e${resposta[i].idTitulo}" name="fb" value="5" onclick="cadastrarAvaliacao(5, ${resposta[i].idTitulo})"/>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,5 +103,30 @@
             });
         }
     
+        function cadastrarAvaliacao(nota, fkTitulo, idUsuario) {
+        console.log("entrei!");
+
+        /*var formulario = new URLSearchParams(new FormData(form_cadastro_avaliacao));*/
+        var idUsuario = sessionStorage.id_usuario_meuapp;
+        console.log(`${idUsuario}`);
+
+        fetch(`/usuarios/cadastrar_avaliacao/${nota}/${fkTitulo}/${idUsuario}`, {
+        method: "POST",
+        /*body: formulario,*/
+        }).then((resposta) => {
+        if (resposta.ok) {
+            alert('Título avaliado com sucesso!');
+        } else {
+            console.log("Erro ao publicar!");
+            resposta.text().then((texto) => {
+            console.error(texto);
+            alert('Você já avaliou esse título.');
+            });
+        }
+        });
+
+        return false;
+    }
+
     </script>
     

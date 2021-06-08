@@ -10,7 +10,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
 </head>
-<body onload="obterPublicacoesPorUsuario()">
+<body onload="obterPublicacoesPorUsuario(), verificar_autenticacao()">
 
     <div class="container">
         <header class="cabecalho">
@@ -21,7 +21,6 @@
                     <ul>
                         <li><a href="./feed.html"><i class="fas fa-home"></i>Feed</a></li>
                         <li><a href="./comunidade.html"><i class="fas fa-users"></i>Comunidades</a></li>
-                        <li><a href="./rankings.html"><i class="fas fa-trophy"></i>Rankings</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onclick="logoff()"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
@@ -73,7 +72,6 @@
                                                 </div>
                                                 <h5>Status: <span id="status">${resposta[i].situacao}</span></h5>
                                                 <h5>Temporadas: <span id="temporadas">${resposta[i].temporada}</span></h5>
-                                                <span>${resposta[i].idTitulo}</span>
                                                 <h5>Ano de lançamento: <span id="lancamento">${resposta[i].anoLancamento}</span></h5>
                                                 <div class="avaliacao">
                                                     <h5>Avalie:</h5>
@@ -119,12 +117,12 @@
         /*body: formulario,*/
         }).then((resposta) => {
         if (resposta.ok) {
-            alert('Deu certo');
+            alert('Título avaliado com sucesso!');
         } else {
             console.log("Erro ao publicar!");
             resposta.text().then((texto) => {
             console.error(texto);
-            alert('Deu errado');
+            alert('Você já avaliou esse título.');
             });
         }
         });

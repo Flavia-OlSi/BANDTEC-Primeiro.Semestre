@@ -17,7 +17,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EBF2FC;
+    background-color: white;
    /* background-image: url(/Img/fundo.jpg);*/
     background-size: cover;
     font-family: 'Hind Siliguri', sans-serif;
@@ -31,16 +31,13 @@ body{
 }
 
 .cabecalho{
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
-    inset -5px -5px 5px rgba(156, 179, 255, 0.5),
-    -5px -5px 5px rgba(255, 255, 255, 0.05);
     width: 15%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: #cae8fa;
+
 }
 
 .cabecalho a, .cabecalho i, .cabecalho p{
@@ -89,14 +86,11 @@ body{
 }
 
 .menu li:hover{
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
-    inset -5px -5px 5px rgba(255, 255, 255, 0.5),
-    -5px -5px 5px rgba(255, 255, 255, 0.05),
-    -5px -5px 5px rgba(255, 255, 255, 0.5);
+    border-left: 3px solid rebeccapurple;
 }
 
 .menu li:hover i, .menu li:hover a{
-    color: #F8E29C;
+    color: rebeccapurple;
 }
 
 .menu a{
@@ -107,7 +101,7 @@ body{
     padding-right: 5%;
 }
 
-.span-suporte a{
+.span-suporte a, .span-suporte p{
     text-decoration: none;
     font-size: 12px;
     font-weight: bolder;

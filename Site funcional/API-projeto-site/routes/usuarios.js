@@ -120,7 +120,7 @@ router.get('/post/', function(req, res, next) {
 });
 
 router.get('/ranking/', function(req, res, next) {
-    console.log('Recuperando livros');
+    console.log('Recuperando títulos');
 
     let instrucaoSql =  `select nome, fkTitulo, TRUNCATE(AVG(nota),2) AS 'notas' FROM avaliacao 
 	inner join titulo
@@ -225,6 +225,44 @@ router.get('/listar_filmes', function(req, res, next) {
 	console.log('Recuperando todas as publicações');
 
     let instrucaoSql = ` SELECT * FROM titulo WHERE fkTipoDeEntretenimento = (SELECT idTipoDeEntretenimento FROM TipoDeEntretenimento WHERE nome = 'Filmes');`;
+
+	sequelize.query(instrucaoSql, {
+		model: Titulo,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+router.get('/consultar_quantidade_avaliada/:idUsuario', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    var idUsuario = req.params.idUsuario;
+
+    let instrucaoSql = ` select count(nota) AS 'qdtAvaliada' FROM avaliacao WHERE fkUsuario = ${idUsuario};`;
+
+	sequelize.query(instrucaoSql, {
+		model: Avaliacao,
+		mapToModel: true 
+	})
+	.then(resultado => {
+		console.log(`Encontrados: ${resultado.length}`);
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
+router.get('/consultar_quantidade_total', function(req, res, next) {
+	console.log('Recuperando todas as publicações');
+
+    let instrucaoSql = `SELECT count(idTitulo) AS 'qndTotal' FROM Titulo;`;
 
 	sequelize.query(instrucaoSql, {
 		model: Titulo,

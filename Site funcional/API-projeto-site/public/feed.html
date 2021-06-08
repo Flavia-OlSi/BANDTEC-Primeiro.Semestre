@@ -10,7 +10,7 @@
     <script type="text/javascript" src="funcoes.js"></script>
     <title>Comunidade</title>
 </head>
-<body onload="obterPost(), obterRanking()">
+<body onload="obterPost(), obterRanking(), select(), verificar_autenticacao(), consultarTotal(), atualizacaoPeriodica()">
 
     <div class="container">
         <header class="cabecalho">
@@ -21,7 +21,6 @@
                 <ul>
                     <li><a href="./feed.html"><i class="fas fa-home"></i>Feed</a></li>
                     <li><a href="./comunidade.html"><i class="fas fa-users"></i>Comunidades</a></li>
-                    <li><a href="./rankings.html"><i class="fas fa-trophy"></i>Rankings</a></li>
                 </ul>
                 <ul>
                     <li><a href="#" onclick="logoff()"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
@@ -32,35 +31,54 @@
 
         <section class="feed">
             <form class="criar-post" id="form_publicar_post" method="post" onsubmit="return publicarPost()">
-                <select name="fkTipoDeEntretenimento" id="">
-                    <option value="1">Dorama</option>
-                    <option value="2">Anime</option>
-                    <option value="3">Filme</option>
-                    <option value="4">Série</option>
+                <div class="grid">
+                <div>
+                <select name="fkTipoDeEntretenimento" id="se_tipoEntretenimento" onchange="selectTitulo()">
+                    
                 </select>
-                <select name="fkTitulo" id="">
-                    <option value="1">Anime 1</option>
-                    <option value="2">Anime 2</option>
-                    <option value="3">Anime 3</option>
-                </select>
-                <h3>Titulo</h3>
-                <input name="titulo" type="text">
-                <h3>Descricao</h3>
-                <input name="descricao" type="text">
-                <button type="submit">Enviar</button>
-            </form>
-            <div class="listar-post" id="listar_post">
+                <select name="fkTitulo" id="se_titulos">
 
+                </select> 
+                </div>
+                
+                <label for="">Assunto:</label>
+                <input name="titulo" type="text">
+                <label for="">Descrição:</label>
+                <textarea name="descricao" type="text"></textarea>
+                <div class="btn_feed">
+                <button type="submit">ENVIAR</button>
+                </div>
+            </div>
+            </form>
+
+            <div class="listar-post" id="listar_post">
+                
             </div>
 
         </section>
 
 
-        <div class="ranking" id="listar_ranking">
-           
+        <section class="ranking">
+            <div class="ranking-geral">
+                <header>
+                    <i class="fas fa-award"></i><h4>TOP FAVORITOS</h4>
+                </header>
+                <ol id="listar_ranking">
+
+                </ol>
+            </div>
+
+            <div class="ranking-geral">
+                <header>
+                    <i class="fas fa-chart-line"></i><h4>CONTRIBRUIÇÃO</h4>
+                </header>
+                <div class="aviso" id="porcentagem">
+  
+                </div>
+            </div>
 
             <p>© 2021 OLSI. Todos os direitos reservados.</p>
-        </div>
+        </section>
     </div>
 
     </div>
@@ -70,6 +88,45 @@
 
 
 <script>
+
+    function select(){
+        se_tipoEntretenimento.innerHTML = `<option value="">-</option>`;
+        for(i = 0; i < tiposDeEntretrenimento.length; i++){
+            se_tipoEntretenimento.innerHTML += `<option value="${tiposDeEntretrenimento[i]}">${tiposDeEntretrenimento[i]}</option>`;
+        }
+    }
+
+    function selectTitulo(){
+
+        var contador = 7;
+
+        se_titulos.innerHTML = `<option value="">-</option>`;
+        if(se_tipoEntretenimento.value == "Animes"){
+                for(i = 0; i < animes.length; i++){
+                se_titulos.innerHTML += `<option value="${contador}">${animes[i]}</option>`;
+                contador++;
+            }
+        }else if (se_tipoEntretenimento.value == "Doramas"){
+            for(i = 0; i < doramas.length; i++){
+                se_titulos.innerHTML += `<option value="${contador}">${doramas[i]}</option>`;
+                contador++;
+            }
+        }else if(se_tipoEntretenimento.value == "Séries"){
+            for(i = 0; i < series.length; i++){
+                se_titulos.innerHTML += `<option value="${contador}">${series[i]}</option>`;
+                contador++;
+            }
+        }else if(se_tipoEntretenimento.value == "Filmes"){
+            for(i = 0; i < filmes.length; i++){
+                se_titulos.innerHTML += `<option value="${contador}">${filmes[i]}</option>`;
+                contador++;
+            }
+        }else{
+            se_titulos.innerHTML = "";
+        }
+   
+    }
+
 
     function publicarPost(){
         console.log("entrei!");
@@ -83,7 +140,6 @@
         body: formulario,
         }).then((resposta) => {
         if (resposta.ok) {
-            alert('Deu certo');
             obterPost();
         } else {
             console.log("Erro ao publicar!");
@@ -97,9 +153,7 @@
         return false;
     }
 
-    function obterRanking() {
-       
-                
+    function obterRanking() {         
         fetch(`/usuarios/ranking`)
         .then(resposta => {
 
@@ -108,8 +162,8 @@
                     // alert(JSON.stringify(resposta))
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     listar_ranking.innerHTML = "";
-                    for(i = 0; i < resposta.length; i++){
-                        listar_ranking.innerHTML += `<p>${resposta[i].nome}</p>`;
+                    for(i = 0; i < 3; i++){
+                        listar_ranking.innerHTML += `<li>${i+1}. ${resposta[i].nome}</li>`;
                         console.log(`${resposta[i].nome}`);      
                     }
                 });
@@ -119,9 +173,7 @@
         })
         .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
-            });
-
-    
+            });    
     }
 
 
@@ -137,22 +189,22 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     listar_post.innerHTML = "";
                     for(i = 0; i < resposta.length; i++){
-                        listar_post.innerHTML += `<div class="card">
-                                                    <div class="box">
-                                                        <div class="content">
-                                                            <div class="sobre">
-                                                                <h5>Username: <span id="genero">${resposta[i].username}</span></h5>
-                                                                <div class="resumo">
-                                                                    <h5>Data:</h5>
-                                                                    <p id="sinopse">${resposta[i].dataPost}</p>
-                                                                </div>
-                                                                <h5>Título: <span id="duracao">${resposta[i].titulo}</span></h5>
-                                                                <h5>Situação: <span id="lancamento">${resposta[i].descricao}</span></h5>
-                                                                </div>
+                        listar_post.innerHTML += `<div class="post">
+                                                        <div class="po-titulo">
+                                                            <span>${resposta[i].titulo}</span>
+                                                        </div>
+                                                        <div class="po-descricao">
+                                                            <span>${resposta[i].descricao}</span>
+                                                        </div>
+                                                        <div class="po-detalhes">
+                                                            <div class="po-autor">
+                                                                <h4>Autor: </h4><span>${resposta[i].username}</span>
+                                                            </div>
+                                                            <div class="po-data">
+                                                                <h4>Data: </h4><span>${resposta[i].dataPost}</span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>`
+                                                    </div>`
                                             
                     }
                 });
@@ -168,5 +220,63 @@
     }
 
 
+var total_titulos = 0;
+    function consultarTotal() { 
+       fetch(`/usuarios/consultar_quantidade_total`)
+       .then(resposta => {
+
+           if (resposta.ok) {
+               resposta.json().then(function (resposta) {
+                   // alert(JSON.stringify(resposta))
+                   console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                   
+                   total_titulos = resposta[0].qndTotal;
+                   
+               });
+           } else {
+               console.error('Nenhum dado encontrado ou erro na API');
+           }
+       })
+       .catch(function (error) {
+               console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
+           });
+
+           consultarAvaliado()
+}
+
+var total_avaliado = 0;
+    function consultarAvaliado() { 
+
+        var idUsuario = sessionStorage.id_usuario_meuapp;
+       fetch(`/usuarios/consultar_quantidade_avaliada/${idUsuario}`)
+       .then(resposta => {
+
+           if (resposta.ok) {
+               resposta.json().then(function (resposta) {
+                   // alert(JSON.stringify(resposta))
+                   console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                   
+                   total_avaliado = resposta[0].qdtAvaliada;
+                   
+               });
+           } else {
+               console.error('Nenhum dado encontrado ou erro na API');
+           }
+       })
+       .catch(function (error) {
+               console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
+           });       
+}
+
+function atualizacaoPeriodica() {
+        calcularParticipacao();
+        setTimeout(atualizacaoPeriodica, 500);
+      }
+
+function calcularParticipacao(){
+    var porcent = (total_avaliado*100)/total_titulos;
+    console.log(porcent);
+    porcentagem.innerHTML = `<span>Você avaliou <br><br><span class="negrito">${porcent.toFixed(2)}%</span><br><br>dos títulos disponiveis.</span>`;
+}
 
 </script>
